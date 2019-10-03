@@ -23,6 +23,17 @@ attr_accessor :capacity
     @bikes.pop
   end
 
+  def release_broken_bike_to_van
+    temp_arr = []
+    for i in (0...@bikes.count)
+      if @bikes[i].broken? == true
+        temp_arr.push(@bikes[i])
+        @bikes.slice(i)
+      end
+    end
+    temp_arr
+  end
+
   def dock(bike, status = 'working')
     if status != 'working'
       bike.report_broken
