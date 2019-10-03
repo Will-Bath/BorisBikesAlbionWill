@@ -1,4 +1,5 @@
 require 'DockingStation'
+require 'support/shared_examples_for_bike_container'
 
 describe DockingStation do
   it { is_expected.to respond_to :release_bike }
@@ -21,12 +22,14 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
 
+    it_behaves_like BikeContainer
+
   end
 
   describe '#dock' do
     it 'raises an error when full' do
       subject.capacity.times { subject.dock Bike.new }
-      expect { subject.dock Bike.new }.to raise_error 'Docking station full'
+      expect { subject.dock Bike.new }.to raise_error 'DockingStation full'
     end
 
     it 'has a broken bike that returns as broken' do
@@ -46,12 +49,12 @@ describe DockingStation do
 
         expect(docking_station.print_bikes).to include(bike)
     end
-  end
 
-    # existing tests omitted for brevity
     it { is_expected.to respond_to(:dock).with(1).argument }
 
     it { is_expected.to respond_to(:bike) }
+
+  end
 
   describe 'initialization' do
     subject { DockingStation.new }
