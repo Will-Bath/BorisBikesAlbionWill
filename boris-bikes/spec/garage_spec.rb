@@ -15,9 +15,7 @@ describe Garage do
   end
 
   it 'gets the bikes from the van into the garage' do
-    garage = Garage.new
     arr = [1, 2, 3]
-    subject.store_from_van(arr)
     expect(subject.store_from_van(arr)).to eq(arr)
   end
 

@@ -7,7 +7,7 @@ class Garage
 
   def fix_all_bikes
     @storage.each do |bike|
-      bike.working?
+      bike = bike.working?
     end
   end
 
